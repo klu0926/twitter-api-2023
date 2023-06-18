@@ -27,6 +27,8 @@ const adminController = {
   getUsers: async (req, res, next) => {
     try {
       const users = await User.findAll({
+        // 只拿使用者，不拿 管理者
+        where: { role: 'user' },
         attributes: {
           exclude: ['password'],
           include: [
