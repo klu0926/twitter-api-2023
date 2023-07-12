@@ -1,6 +1,6 @@
 const { emitError, findUserInPublic } = require('../helper')
 const { Chat, User } = require('../../models')
-const { Op } = require('sequelize')
+const { Op, literal, QueryTypes } = require('sequelize')
 
 module.exports = async (io, socket) => {
   try {
@@ -11,27 +11,41 @@ module.exports = async (io, socket) => {
     const rooms = currentUser.rooms
 
     // 根據roomId去搜尋message，同一個roomId只留最新一筆訊息
-    const newMessage = await Chat.findAll({
+    const message = await Chat.findAll({
       where: {
         roomId: { [Op.in]: rooms }
       },
       include: [
         { model: User, attributes: ['id', 'name', 'account', 'avatar'] }
       ],
-      attributes: ['id', 'message', 'roomId', 'timestamp'],
-      order: [['id', 'DESC']] // 最新的訊息在最上方
+      attributes: [
+        'id', 'message', 'roomId', 'timestamp',
+        [
+          literal(`(
+            SELECT COUNT(*) 
+            FROM Chats AS c 
+            LEFT JOIN UserReads AS r 
+            ON r.roomId = c.roomId AND r.userId = :userId 
+            WHERE c.roomId = Chat.roomId AND c.timestamp > r.lastRead  )`
+          ),
+          'unreadMessageCounts'
+        ]
+      ],
+      order: [['id', 'DESC']], // 最新的訊息在最上方
+      replacements: { userId: currentUser.id },
+      type: QueryTypes.SELECT
     })
+    console.log(message)
     // 暫時想不到直接在DB處理的方式，先抓出來處理
-    const newMessageData = []
-    newMessage.forEach(m => {
-      const roomIdExist = newMessageData.some(d => d.roomId === m.roomId)
-      if (!roomIdExist) newMessageData.push(m.toJSON())
+    const newMessage = []
+    const allUnreadMessage = 0
+    message.forEach(m => {
+      const roomIdExist = newMessage.some(d => d.roomId === m.roomId)
+      if (!roomIdExist) newMessage.push(m.toJSON())
     })
-
-    // 顯示未讀訊息的數量
-    const unreadMessage = 0
+    console.log('new:', newMessage)
     // 回傳最新訊息
-    io.emit('server-new-message', newMessageData)
+    io.emit('server-new-message', newMessage)
   } catch (err) {
     emitError(socket, err)
   }

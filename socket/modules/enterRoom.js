@@ -17,7 +17,7 @@ module.exports = async (socket, roomId) => {
 
     // check Read record exist
     let read = await Read.findOne({
-      where: { roomId, userId }
+      where: { roomId, userId } // 加入userId
     })
 
     // create one if not exist
