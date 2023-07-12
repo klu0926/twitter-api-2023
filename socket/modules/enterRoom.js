@@ -17,7 +17,7 @@ module.exports = async (socket, roomId) => {
 
     // check Read record exist
     let read = await Read.findOne({
-      where: { roomId }
+      where: { roomId, userId }
     })
 
     // create one if not exist
@@ -35,7 +35,7 @@ module.exports = async (socket, roomId) => {
       })
       await lastRoomRead.update({ lastRead: new Date() })
       socket.emit('server-enter-room',
-        `${user.account} left room ${user.currentRoom}, time = ${read.lastRead}`)
+        `${user.account} left room ${user.currentRoom}, time = ${lastRoomRead.lastRead}`)
     }
 
     // update current room

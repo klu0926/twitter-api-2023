@@ -28,7 +28,7 @@ module.exports = async (io, socket) => {
       if (!roomIdExist) newMessageData.push(m.toJSON())
     })
 
-    // 以上做完要在做顯示未讀訊息的數量
+    // 顯示未讀訊息的數量
     const unreadMessage = 0
     // 回傳最新訊息
     io.emit('server-new-message', newMessageData)
