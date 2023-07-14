@@ -1,6 +1,6 @@
 const { emitError, findUserInPublic } = require('../helper')
 const { Chat, User } = require('../../models')
-const { Op, literal, QueryTypes } = require('sequelize')
+const { Op } = require('sequelize')
 
 module.exports = async (io, socket) => {
   try {
@@ -18,27 +18,10 @@ module.exports = async (io, socket) => {
       include: [
         { model: User, attributes: ['id', 'name', 'account', 'avatar'] }
       ],
-      attributes: [
-        'id', 'message', 'roomId', 'timestamp',
-        [
-          literal(`(
-            SELECT COUNT(*) 
-            FROM Chats AS c 
-            LEFT JOIN UserReads AS r 
-            ON r.roomId = c.roomId AND r.userId = :userId 
-            WHERE c.roomId = Chat.roomId AND c.timestamp > r.lastRead  )`
-          ),
-          'unreadMessageCounts'
-        ]
-      ],
-      order: [['id', 'DESC']], // 最新的訊息在最上方
-      replacements: { userId: currentUser.id },
-      type: QueryTypes.SELECT
+      attributes: ['id', 'message', 'roomId', 'timestamp'],
+      order: [['id', 'DESC']]
     })
-    console.log(message)
-    // 暫時想不到直接在DB處理的方式，先抓出來處理
     const newMessage = []
-    const allUnreadMessage = 0
     message.forEach(m => {
       const roomIdExist = newMessage.some(d => d.roomId === m.roomId)
       if (!roomIdExist) newMessage.push(m.toJSON())

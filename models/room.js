@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       Room.belongsTo(models.User, { foreignKey: 'userOneId' })
       Room.belongsTo(models.User, { foreignKey: 'userTwoId' })
       Room.hasMany(models.Chat, { foreignKey: 'roomId' })
+      Room.hasMany(models.Read, { foreignKey: 'roomId' })
     }
   }
   Room.init(
