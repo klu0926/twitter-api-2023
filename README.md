@@ -1,24 +1,25 @@
 # Simple Twitter
-
 ![screenshot](public/images/placeholder1.png)
 
 ## About - 介紹
-這是一個前後端分離的小組專案，前端使用React，後端則使用Node.js、Express搭配MySQL關連式資料庫所打造的API Server。
-Simple Twitter 提供後台管理及前台頁面，使用者可以註冊，登入，推文，回覆推文，喜歡跟追蹤使用者等功能。
-<br><br>
-## Website - https://zebrrrra.github.io/twitter_challenge/main
-## 前端 github repo - https://github.com/zebrrrra/twitter_challenge
-<br><br>
+這是一個前後端分離的小組專案，前端使用 React，後端則使用 Node.js、Express 搭配 MySQL 關聯式資料庫所打造的 API 伺服器。Simple Twitter 提供後台管理及前台頁面，使用者可以註冊、登入、推文、回覆推文、喜歡及追蹤使用者等功能。
+
+## URL - 網站連結
+網站 - https://zebrrrra.github.io/twitter_challenge/main<br>
+前端 github repo - https://github.com/zebrrrra/twitter_challenge
+
+## Preview - 預覽
+![screenshot](public/images/homePage.png)
+![screenshot](public/images/tweetPage.png)
+![screenshot](public/images/publicChat.png)
 
 ## API - 接口文件
 文件內提供每個接口的的使用方式，回傳，成功跟失敗的回傳資訊：<br>
 https://www.notion.so/API-c1a90264a00848d2af202689ae0148be 
-<br><br>
 
 ## Environment - 開發環境
 * node v14.16.0
 * nodemon
-<br><br>
 ## Installation and Execution - 安裝與執行步驟
 ### 1. 開啟Terminal, Clone此專案至本機:
 ```
