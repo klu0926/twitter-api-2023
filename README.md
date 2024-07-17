@@ -5,8 +5,8 @@
 這是一個前後端分離的小組專案，前端使用 React，後端則使用 Node.js、Express 搭配 MySQL 關聯式資料庫所打造的 API 伺服器。Simple Twitter 提供後台管理及前台頁面，使用者可以註冊、登入、推文、回覆推文、喜歡及追蹤使用者等功能。
 
 ## URL - 網站連結
-網站 - https://zebrrrra.github.io/twitter_challenge/main<br>
-前端 github repo - https://github.com/zebrrrra/twitter_challenge
+Website - https://zebrrrra.github.io/twitter_challenge/main<br>
+Frontend Repo - https://github.com/zebrrrra/twitter_challenge
 
 ## Preview - 預覽
 ![screenshot](public/images/homePage.png)
@@ -62,7 +62,7 @@ npm run dev
 ```
 Example app listening on port 3000!
 ``` 
-<br>
+
 
 ## Seed Accounts - 測試帳號
 專案提供 1 個後台管理者帳號與跟 9 位使用者帳號<br>
@@ -100,7 +100,6 @@ password: 12345678 <br>
 * sequelize-cli: "^5.5.0",
 * sinon: "^10.0.0",
 * sinon-chai: "^3.3.0"
-<br><br>
 
 ## Team - 團隊成員
 ### 前端
