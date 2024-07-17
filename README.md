@@ -6,12 +6,12 @@
 這是一個前後端分離的小組專案，前端使用React，後端則使用Node.js、Express搭配MySQL關連式資料庫所打造的API Server。
 Simple Twitter 提供後台管理及前台頁面，使用者可以註冊，登入，推文，回覆推文，喜歡跟追蹤使用者等功能。
 <br><br>
-## Website - https://zebrrrra.github.io/AC_twitter_frontend
-## 前端github repo - https://github.com/zebrrrra/AC_twitter_frontend
+## Website - https://zebrrrra.github.io/twitter_challenge/main
+## 前端 github repo - https://github.com/zebrrrra/twitter_challenge
 <br><br>
 
 ## API - 接口文件
-文件內提供每個街口的的使用方式，回傳，成功跟失敗的回傳資訊：<br>
+文件內提供每個接口的的使用方式，回傳，成功跟失敗的回傳資訊：<br>
 https://www.notion.so/API-c1a90264a00848d2af202689ae0148be 
 <br><br>
 
